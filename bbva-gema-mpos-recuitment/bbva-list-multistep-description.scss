@@ -1,0 +1,28 @@
+@import 'node_modules/@cells-components/cells-sass/main';
+
+:host {
+  box-sizing: border-box;
+  display: block;
+  padding: 0 grid8Spacer(16px, em, 16px) grid8Spacer(8px, em, 16px);
+  background-color: var(--bbva-list-multistep-description-bg-color, transparent);
+}
+
+:host([hidden]),
+[hidden] {
+  display: none !important;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.slot-container ::slotted(*) {
+  color: var(--bbva-list-multistep-description-text-color, fallbackVar('foundations.colors.primaryCoreLightened'));
+  font-size: fallbackVar('foundations.typography.typeSmall');
+  line-height: fallbackVar('foundations.lineHeight.typeSmall');
+  font-weight: fallbackVar('foundations.fontFacePrimary.book.fontWeight'); 
+  font-style: fallbackVar('foundations.fontFacePrimary.book.fontStyle');
+
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>bbva-progress-vertical-step demo</title>
+    <script src="../build/webcomponents-loader.js"></script>
+    <script src="../build/scoping-shim.min.js"></script>
+    <script src="../build/apply-shim.min.js"></script>
+    <script src="../build/custom-style-interface.min.js"></script>
+    <script>
+      {
+        const _customElementsDefine = window.customElements.define;
+        window.customElements.define = (name, cl, conf) => {
+          if (customElements.get(name)) {
+            console.warn(`${name} has been defined twice`);
+          } else {
+            _customElementsDefine.call(window.customElements, name, cl, conf);
+          }
+        };
+      }
+    </script>
+    <script>
+      window.I18nMsg = window.I18nMsg || {};
+      window.I18nMsg.url = '../locales/';
+    </script>
+    <script defer src="../build/component.js"></script>
+    <script type="module" crossorigin="use-credentials">
+      import '../build/demo-build.js';
+    </script>
+  </head>
+
+  <body>
+    <cells-demo-helper events='["progress-vertical-step-link-click"]'>
+      <cells-demo-case heading="Basic" description="Default specs">
+        <template>
+          <bbva-progress-vertical-step id="progress"></bbva-progress-vertical-step>
+          <script>
+            const progress = document.querySelector('#progress');
+            progress.steps = [
+              {
+                title: 'Shipped',
+                date: 'April 23, 1995',
+                subtitle: 'Subtitle',
+                content:
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus justo sollicitudin non.',
+                linkText: 'Button',
+                status: 'completed',
+              },
+              {
+                title: 'Delivery attempt',
+                date: 'April 29, 1995',
+                subtitle: 'Subtitle',
+                content:
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus justo sollicitudin non.',
+                link: 'https://www.bbva.es',
+                target: '_blank',
+                linkText: 'BBVA',
+                status: 'error',
+                notificationIcon: 'coronita:alert',
+                notificationText: 'Error!',
+              },
+              {
+                title: 'Delivered',
+                date: 'May 7, 1995',
+                subtitle: 'Subtitle',
+                content:
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus justo sollicitudin non.',
+                link: 'https://www.bbva.es',
+                linkText: 'Link',
+                status: 'pending',
+              },
+            ];
+          </script>
+        </template>
+      </cells-demo-case>
+      <cells-demo-case heading="Ambients">
+        <template>
+          <script type="module">
+            const { bbvaProgressVerticalStepAmbient: componentAmbient } = window.DemoHelpers;
+
+            const steps = [
+              {
+                title: 'Shipped',
+                date: 'April 23, 1995',
+                subtitle: 'Subtitle',
+                content:
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus justo sollicitudin non.',
+                linkText: 'Button',
+                status: 'completed',
+              },
+              {
+                title: 'Delivery attempt',
+                date: 'April 29, 1995',
+                subtitle: 'Subtitle',
+                content:
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus justo sollicitudin non.',
+                link: 'https://www.bbva.es',
+                target: '_blank',
+                linkText: 'BBVA',
+                status: 'error',
+                notificationIcon: 'coronita:alert',
+                notificationText: 'Error!',
+              },
+              {
+                title: 'Delivered',
+                date: 'May 7, 1995',
+                subtitle: 'Subtitle',
+                content:
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit senectus justo sollicitudin non.',
+                link: 'https://www.bbva.es',
+                linkText: 'Link',
+                status: 'pending',
+              },
+            ];
+
+            // Return your components examples.
+            const examples = () => html`
+              <bbva-progress-vertical-step
+                id="progress"
+                .steps=${steps}
+              ></bbva-progress-vertical-step>
+            `;
+
+            // Define your variants or an empty array if it doesn't have.
+            const variants = [];
+
+            // Reusabled code (Copy and paste, don't change)
+            const { html, render } = window.DemoHelpers;
+            const demoElement = document.querySelector('.demo');
+            const customizationElement = document.querySelector('.customization');
+            const examplesElement = document.querySelector('.examples');
+            render(examples(), examplesElement);
+
+            const ambients = [
+              { value: '', text: 'No ambient', selected: true },
+              { value: 'light', text: 'Light' },
+              { value: 'dark', text: 'Dark (Dark 200)' },
+            ];
+
+            const variantChanged = event => {
+              const variant = event.target.value;
+              render(examples(variant), examplesElement);
+            };
+
+            const ambientChanged = event => {
+              if (event.target.value) {
+                const ambient = event.target.value;
+                examplesElement.setAttribute('ambient', ambient);
+              } else {
+                examplesElement.removeAttribute('ambient');
+              }
+            };
+
+            const customization = (ambients, variants) => html`
+              <style id="ambientStyles">
+                ${componentAmbient.light.cssText}
+                ${componentAmbient.dark.cssText}
+              </style>
+              <bbva-form-select
+                @change="${ambientChanged}"
+                label="Ambient"
+                .items="${ambients}"
+              ></bbva-form-select>
+              ${variants.length
+                ? html`
+                    <bbva-form-select
+                      @change="${ambientChanged}"
+                      label="Variants"
+                      .items="${variants}"
+                    >
+                    </bbva-form-select>
+                  `
+                : ''}
+            `;
+            render(customization(ambients, variants), customizationElement);
+          </script>
+          <div class="demo">
+            <div class="customization"></div>
+            <div class="examples"></div>
+          </div>
+        </template>
+      </cells-demo-case>
+    </cells-demo-helper>
+  </body>
+</html>

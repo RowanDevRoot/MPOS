@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bbva-gema-mpos-recuitment-main demo</title>
+    <script src="../build/webcomponents-loader.js"></script>
+    <script src="../build/scoping-ambients-shim.min.js"></script>
+    <script src="../build/custom-style-interface.min.js"></script>
+    <script>
+      {
+        const _customElementsDefine = window.customElements.define;
+        window.customElements.define = (name, cl, conf) => {
+          if (customElements.get(name)) {
+            console.warn(`${name} has been defined twice`);
+          } else {
+            _customElementsDefine.call(window.customElements, name, cl, conf);
+          }
+        };
+      }
+    </script>
+    <script defer src="../build/component.js"></script>
+    <script type="module" crossorigin="use-credentials">
+      import '../build/demo-build.js';
+    </script>
+  </head>
+
+  <body>
+    <bbva-core-demo-helper>
+      <bbva-core-demo-case heading="Basic" description="Default specs">
+        <template>
+          <bbva-gema-mpos-recuitment-main>
+            <bbva-header-main
+              accessibility-text-icon-left1="Return"
+              accessibility-text-icon-left2="Communication"
+              accessibility-text-icon-right1="Menu"
+              accessibility-text-icon-right2="Help"
+              icon-left1="coronita:return-12"
+              icon-left2="coronita:communication"
+              icon-right1="coronita:menu"
+              icon-right2="coronita:help"
+              text="Header main">
+            </bbva-header-main>
+          </bbva-gema-mpos-recuitment-main>
+        </template>
+      </bbva-core-demo-case>
+    </bbva-core-demo-helper>
+  </body>
+</html>

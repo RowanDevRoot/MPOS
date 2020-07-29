@@ -1,0 +1,1 @@
+export { BbvaMposRecuttmentVews } from './src/BbvaMposRecuttmentVews.js';

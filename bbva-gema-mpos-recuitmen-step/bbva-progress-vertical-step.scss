@@ -1,0 +1,155 @@
+@import 'node_modules/@cells-components/cells-sass/main';
+
+:host {
+  --_status-pending-color: var(--bbva-progress-vertical-step-pending-color,#{fallbackVar('foundations.colors.secondary300')});
+  --_status-pending-line-color: var(--bbva-progress-vertical-step-pending-line-color,#{fallbackVar('foundations.colors.secondary300')});
+  --_status-pending-subtitle-color: var(--bbva-progress-vertical-step-pending-subtitle-color,#{fallbackVar('foundations.colors.primaryCore')});
+  --_status-pending-text-color: var(--bbva-progress-vertical-step-pending-text-color,#{fallbackVar('foundations.colors.secondary500')});
+  --_status-pending-title-color: var(--bbva-progress-vertical-step-pending-title-color,#{fallbackVar('foundations.colors.secondary600')});
+  --_status-completed-color: var(--bbva-progress-vertical-step-completed-color,#{fallbackVar('foundations.colors.tertiaryType6Dark')});
+  --_status-completed-line-color: var(--bbva-progress-vertical-step-completed-line-color,#{fallbackVar('foundations.colors.tertiaryType6Dark')});
+  --_status-completed-subtitle-color: var(--bbva-progress-vertical-step-completed-subtitle-color,#{fallbackVar('foundations.colors.tertiaryType6Dark')});
+  --_status-completed-text-color: var(--bbva-progress-vertical-step-completed-text-color,#{fallbackVar('foundations.colors.secondary600')});
+  --_status-completed-title-color: var(--bbva-progress-vertical-step-completed-title-color,#{fallbackVar('foundations.colors.secondary600')});
+  --_status-error-color: var(--bbva-progress-vertical-step-error-color,#{fallbackVar('foundations.colors.tertiaryType1Dark')});
+  --_status-error-line-color: var(--bbva-progress-vertical-step-error-line-color,#{fallbackVar('foundations.colors.secondary300')});
+  --_status-error-subtitle-color: var(--bbva-progress-vertical-step-error-subtitle-color,#{fallbackVar('foundations.colors.tertiaryType1Dark')});
+  --_status-error-text-color: var(--bbva-progress-vertical-step-error-text-color,#{fallbackVar('foundations.colors.secondary600')});
+  --_status-error-title-color: var(--bbva-progress-vertical-step-error-title-color,#{fallbackVar('foundations.colors.secondary600')});
+  --_date-color: var(--bbva-progress-vertical-step-date-color,#{fallbackVar('foundations.colors.secondary600')});
+  --_link-color: var(--bbva-progress-vertical-step-link-color,#{fallbackVar('foundations.colors.primaryMedium')});
+  --_link-active-color: var(--bbva-progress-vertical-step-link-active-color,#{fallbackVar('foundations.colors.primaryCoreDark')});
+  --_link-disabled-color: var(--bbva-progress-vertical-step-link-disabled-color,#{fallbackVar('foundations.colors.secondary400')});
+  display: block;
+  box-sizing: border-box;
+}
+
+:host([hidden]),
+[hidden] {
+  display: none !important;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.sr-only {
+  @include visuallyhidden;
+}
+
+.steps {
+  padding: var(--bbva-progress-vertical-step-steps-padding, #{grid8Spacer(16px, em)});
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  --_status-color: var(--_status-pending-color);
+  --_status-line-color: var(--_status-pending-line-color);
+  --_status-subtitle-color: var(--_status-pending-subtitle-color);
+  --_status-text-color: var(--_status-pending-text-color);
+  --_status-title-color: var(--_status-pending-title-color);
+  display: flex;
+  position: relative;
+  flex: 0;
+  width: 100%;
+  padding-bottom: grid8Spacer(16px, em);
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    height: 100%;
+    width: 1px;
+    background: var(--_status-line-color);
+  }
+
+  &:last-of-type::before {
+    display: none;
+  }
+}
+
+.completed {
+  --_status-color: var(--_status-completed-color);
+  --_status-line-color: var(--_status-completed-line-color);
+  --_status-subtitle-color: var(--_status-completed-subtitle-color);
+  --_status-text-color: var(--_status-completed-text-color);
+  --_status-title-color: var(--_status-completed-title-color);
+}
+
+.error {
+  --_status-color: var(--_status-error-color);
+  --_status-line-color: var(--_status-error-line-color);
+  --_status-subtitle-color: var(--_status-error-subtitle-color);
+  --_status-text-color: var(--_status-error-text-color);
+  --_status-title-color: var(--_status-error-title-color);
+}
+
+.circle {
+  height: rem(16px);
+  width: rem(16px);
+  margin-top: grid8Spacer(4px);
+  border-radius: 50%;
+  background-color: var(--_status-color);
+  position: relative;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: grid8Spacer(16px);
+}
+
+.step-heading {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: fallbackVar('foundations.typography.typeMedium');
+  font-weight: fallbackVar('foundations.fontFacePrimary.medium.fontWeight');
+  font-style: fallbackVar('foundations.fontFacePrimary.medium.fontStyle');
+  line-height: fallbackVar('foundations.lineHeight.typeMedium');
+  color: var(--_status-title-color);
+}
+
+.subtitle {
+  margin-top: grid8Spacer(8px);
+  font-size: fallbackVar('foundations.typography.typeSmall');
+  font-weight: fallbackVar('foundations.fontFacePrimary.book.fontWeight');
+  font-style: fallbackVar('foundations.fontFacePrimary.book.fontStyle');
+  line-height: fallbackVar('foundations.lineHeight.typeSmall');
+  color: var(--_status-subtitle-color);
+}
+
+.text {
+  margin-top: grid8Spacer(8px);
+  font-size: fallbackVar('foundations.typography.typeSmall');
+  font-weight: fallbackVar('foundations.fontFacePrimary.book.fontWeight');
+  font-style: fallbackVar('foundations.fontFacePrimary.book.fontStyle');
+  line-height: fallbackVar('foundations.lineHeight.typeSmall');
+  color: var(--_status-text-color);
+}
+
+.date {
+  color: var(--_date-color);
+}
+
+.notification {
+  margin-top: grid8Spacer(8px);
+  --bbva-notification-help-icon-color: var(--bbva-progress-vertical-step-help-icon-color,#{fallbackVar('foundations.colors.tertiaryType1Dark')});
+  --bbva-notification-help-text-color: var(--bbva-progress-vertical-step-help-text-color,#{fallbackVar('foundations.colors.secondary600')});
+}
+
+.link {
+  --bbva-link-color: var(--_link-color);
+  --bbva-link-active-color: var(--_link-active-color);
+  --bbva-link-disabled-color: var(--_link-disabled-color);
+}

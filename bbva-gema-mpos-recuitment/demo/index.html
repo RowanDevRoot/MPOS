@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>bbva-list-multistep demo</title>
+  <script src="../build/webcomponents-loader.js"></script>
+  <script src="../build/scoping-shim.min.js"></script>
+  <script src="../build/apply-shim.min.js"></script>
+  <script src="../build/custom-style-interface.min.js"></script>
+  <script>
+    {
+      const _customElementsDefine = window.customElements.define;
+      window.customElements.define = (name, cl, conf) => {
+        if (customElements.get(name)) {
+          console.warn(`${name} has been defined twice`);
+        } else {
+          _customElementsDefine.call(window.customElements, name, cl, conf);
+        }
+      };
+    }
+  </script>
+  <script>
+    window.I18nMsg = window.I18nMsg || {};
+    window.I18nMsg.url = '../locales/';
+  </script>
+  <script defer src="../build/component.js"></script>
+  <script type="module" crossorigin="use-credentials">
+    import '../build/demo-build.js';
+  </script>
+</head>
+
+<body>
+  <cells-demo-helper>
+    <cells-demo-case heading="Default">
+      <template>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span>Contratación</span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span>BBVA mPOS</span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span>Casuísticas</span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-link-icon icon-left="coronita:myprofile">Cliente BBVA sin afiliación nii TPV </bbva-list-link-icon>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span>mPOS MX - MVP 2020</span>
+          </bbva-list-multistep-description>
+        </p>
+
+      </template>
+    </cells-demo-case>
+  </cells-demo-helper>
+</body>
+
+</html>

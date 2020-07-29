@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>bbva-list-multistep demo</title>
+  <script src="../build/webcomponents-loader.js"></script>
+  <script src="../build/scoping-shim.min.js"></script>
+  <script src="../build/apply-shim.min.js"></script>
+  <script src="../build/custom-style-interface.min.js"></script>
+  <script>
+    {
+      const _customElementsDefine = window.customElements.define;
+      window.customElements.define = (name, cl, conf) => {
+        if (customElements.get(name)) {
+          console.warn(`${name} has been defined twice`);
+        } else {
+          _customElementsDefine.call(window.customElements, name, cl, conf);
+        }
+      };
+    }
+  </script>
+  <script>
+    window.I18nMsg = window.I18nMsg || {};
+    window.I18nMsg.url = '../locales/';
+  </script>
+  <script defer src="../build/component.js"></script>
+  <script type="module" crossorigin="use-credentials">
+    import '../build/demo-build.js';
+  </script>
+  <script type="module">
+    // Import your component ambients and assing them to componentAmbient.
+    const { bbvaButtonDefaultAmbient: componentAmbient } = window.DemoHelpers;
+    // Return your components examples based on variant.
+    const examples = (variant) => html`
+      <bbva-button-default variant="${variant}">Default</bbva-button-default>
+      <bbva-button-default variant="${variant}" active>Active</bbva-button-default>
+      <bbva-button-default variant="${variant}" disabled>Disabled</bbva-button-default>
+      <bbva-button-default variant="${variant}" class="full-width">Full width</bbva-button-default>
+    `;
+    // Define your variants or an empty array if it doesn't have.
+    const variants = [
+      { value: '', text: 'No variant', selected: true },
+      { value: 'primary', label: 'Primary', },
+      { value: 'secondary', label: 'Secondary', },
+      { value: 'positive', label: 'Positive', },
+    ];
+
+    // Reusabled code (Copy and paste, don't change)
+    const { html, render } = window.DemoHelpers;
+    const demoElement = document.querySelector('.demo');
+    const customizationElement = document.querySelector('.customization');
+    const examplesElement = document.querySelector('.examples');
+    render(examples(), examplesElement);
+
+    const ambients = [
+      { value: '', text: 'No ambient', selected: true },
+      { value: 'light', text: 'Light', },
+      { value: 'light100', text: 'Light 100', },
+      { value: 'dark', text: 'Dark (Dark 200)', },
+      { value: 'dark100', text: 'Dark 100', },
+      { value: 'dark200', text: 'Dark 200', },
+      { value: 'dark300', text: 'Dark 300', },
+      { value: 'dark400', text: 'Dark 400', },
+    ];
+
+    const variantChanged = (event) => {
+      const variant = event.target.value;
+      render(examples(variant), examplesElement);
+    };
+
+    const ambientChanged = (event) => {
+      if (event.target.value) {
+        const ambient = event.target.value;
+        examplesElement.setAttribute('ambient', ambient);
+      } else {
+        examplesElement.removeAttribute('ambient');
+      }
+    };
+
+    const customization = (ambients, variants) => html`
+      <style id="ambientStyles">
+        ${componentAmbient.light.cssText}
+        ${componentAmbient.dark.cssText}
+      </style>
+      <bbva-form-select
+        @change="${ambientChanged}"
+        label="Ambient"
+        .items="${ambients}"></bbva-form-select>
+      ${variants.length ? html`
+        <bbva-form-select
+          @change="${variantChanged}"
+          label="Variants"
+          .items="${variants}">
+        </bbva-form-select>
+      ` : ''}
+    `;
+    render(customization(ambients, variants), customizationElement);
+  </script>
+
+  <div class="demo">
+    <div class="customization"></div>
+    <div class="examples"></div>
+  </div>
+</head>
+
+<body>
+  <cells-demo-helper>
+    <cells-demo-case heading="Default">
+      <template>
+        <bbva-header-main icon-right1="coronita:menu" text="Lector móvil BBVA">
+        </bbva-header-main>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span></span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-list-multistep-description>
+            <span>Con el lector móvilBBVA, acepta
+            pagos con tarjeta en tu negocio. Sólo
+            cónectalo a tu celular y listo 
+            solicitalo y conrátalo aquí.</span>
+          </bbva-list-multistep-description>
+        </p>
+        <bbva-list-multistep name="Costo por lector:">
+          <span slot="number">&middot;$249.00 IVA incluido </span>
+        </bbva-list-multistep>
+
+        <p ALIGN=left>
+          <bbva-list-multistep-description>
+            <span>Comisión de 2.5% + IVA por transaccón</span>
+            <span>Sin mínimo de facturación </span>
+            <span>Sin renta mensual</span>
+            <span>Ofrece meses sin intereses a tus clientes </span>
+            <span>Acepta pagos con punto BBVA </span>
+          </bbva-list-multistep-description>
+        </p>
+        <p ALIGN=center>
+          <bbva-button-default text="Solicítalo">
+          </bbva-button-default>
+        </p>
+        <p ALIGN= center>
+          <bbva-link href="https://www.bbva.com" target="_white">Más Información</bbva-link>
+        </p>
+      </template>
+    </cells-demo-case>
+  </cells-demo-helper>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "@bbva-web-components/bbva-list-multistep-description",
+  "version": "1.1.0",
+  "description": "The description multistep list item is used to provide a description for the multistep list. There is only one variation of the multistep list.",
+  "keywords": [
+    "list",
+    "multistep",
+    "description"
+  ],
+  "main": "bbva-list-multistep-description.js",
+  "scripts": {
+    "test": "npx karma start ../../_karma/conf.js",
+    "test:compatibility": "npm run test -- --force-polyfills --compatibility all",
+    "test:compatibility:watch": "npm run test:compatibility --  --auto-watch=true --single-run=false",
+    "test:prune-snapshots": "npm run test -- --prune-snapshots",
+    "test:update-snapshots": "npm run test -- --update-snapshots",
+    "test:watch": "npm run test -- --auto-watch=true --single-run=false"
+  },
+  "dependencies": {
+    "@bbva-web-components/bbva-foundations-styles": "^1.0.0",
+    "@bbva-web-components/bbva-list-link-icon": "^3.1.0",
+    "@cells-components/cells-lit-helpers": "^1.0.0",
+    "lit-element": "^2.0.0",
+    "lit-html": "^1.0.0"
+  },
+  "devDependencies": {
+    "@cells/cells-component-core": "^1.0.0"
+  }
+}

@@ -1,0 +1,25 @@
+@import "node_modules/@cells-components/cells-sass/main";
+
+[ambient^=dark] {
+  --bbva-progress-vertical-step-pending-color: #{fallbackVar('foundations.colors.secondary300')};
+  --bbva-progress-vertical-step-pending-line-color: #{fallbackVar('foundations.colors.secondary300')};
+  --bbva-progress-vertical-step-pending-subtitle-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-pending-text-color: #{fallbackVar('foundations.colors.secondary300')};
+  --bbva-progress-vertical-step-pending-title-color: #{fallbackVar('foundations.colors.secondary300')};
+  --bbva-progress-vertical-step-completed-color: #{fallbackVar('foundations.colors.tertiaryType6Medium')};
+  --bbva-progress-vertical-step-completed-line-color: #{fallbackVar('foundations.colors.tertiaryType6Medium')};
+  --bbva-progress-vertical-step-completed-subtitle-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-completed-text-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-completed-title-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-error-color: #{fallbackVar('foundations.colors.tertiaryType1Light')};
+  --bbva-progress-vertical-step-error-line-color: #{fallbackVar('foundations.colors.secondary300')};
+  --bbva-progress-vertical-step-error-subtitle-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-error-text-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-error-title-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-date-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-help-icon-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-help-text-color: #{fallbackVar('foundations.colors.primaryCoreLightened')};
+  --bbva-progress-vertical-step-link-color: #{fallbackVar('foundations.colors.primarySubdued')};
+  --bbva-progress-vertical-step-link-active-color: #{fallbackVar('foundations.colors.primaryMediumLight')};
+  --bbva-progress-vertical-step-link-disabled-color:#{fallbackVar('foundations.colors.secondary400')};
+}

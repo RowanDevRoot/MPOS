@@ -1,0 +1,1 @@
+export { BbvaGemaMposRecuitmentMain } from './src/BbvaGemaMposRecuitmentMain.js';

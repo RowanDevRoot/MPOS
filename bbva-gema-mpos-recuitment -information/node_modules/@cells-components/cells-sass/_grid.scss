@@ -1,0 +1,50 @@
+  /*---------------------------
+  $GRID GRID MODULE
+------------------------- */
+$base-font-size:      16px;
+@function grid($units, $grid-module: $grid-module) {
+  @return ( ($units * $grid-module) + ($grid-gutter * ($units - 1)) );
+}
+
+$grid-x-count: 12;
+$grid-module: 60;
+$grid-gutter: 20;
+$grid-row: grid($grid-x-count);
+$aux-gutter: percentage($grid-gutter / $grid-row);
+
+@media only screen and (min-width: em(768, 16)) {
+    [class*="grid-m"] {
+        margin-left: $aux-gutter;
+        float: left;
+        &:first-child {
+            margin-left: 0;
+        }
+        &.rev {
+            float: right;
+        }
+    }
+    @for $i from 1 through $grid-x-count {
+        .grid-module-#{$i} {
+            width: percentage(grid($i) / $grid-row);
+        }
+        @if $i - 1 != 0 {
+            .offset-#{$i - 1} {
+                margin-left: percentage((grid($i) - $grid-module) / $grid-row + $grid-gutter / $grid-row);
+                &:first-child {
+                    margin-left: percentage((grid($i) - $grid-module) / $grid-row);
+                }
+            }
+        }
+    }
+    [class*="grid-m"] + [class*="grid-m"]:last-child {
+        float: right;
+    }
+    [class*="grid-m"] + [class*="grid-m"].end {
+        float: left;
+    }
+    .rev + [class*="grid-m"]:last-child {
+        margin-left: 0;
+        margin-right: $aux-gutter;
+        float: left;
+    }
+}
